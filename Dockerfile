@@ -1,12 +1,13 @@
 FROM php:7.3-apache
 MAINTAINER Webgriffe Srl <support@webgriffe.com>
 
+
 # Install GD
 RUN apt-get update && apt-get install -y apt-utils \
     && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
-    && apt-get remove libfreetype6-dev libjpeg62-turbo-dev libpng-dev
+    && apt-get remove libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
 	&& apt-get clean
 
 # Install Intl
@@ -52,7 +53,9 @@ RUN apt-get update \
 RUN docker-php-ext-install opcache
 
 # Install PHP zip extension
-RUN apt-get install libzip-dev && docker-php-ext-configure zip --with-libzip && docker-php-ext-install zip
+RUN apt-get install libzip-dev \
+	&& docker-php-ext-configure zip --with-libzip \
+	&& docker-php-ext-install zip
 
 # Install Git
 RUN apt-get update \
