@@ -78,6 +78,9 @@ ENV APACHE_DOC_ROOT /var/www/html
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
+# Enable debug config
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
 # Additional PHP ini configuration
 COPY ./999-php.ini /usr/local/etc/php/conf.d/
 
