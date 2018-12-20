@@ -54,7 +54,7 @@ RUN apt-get update \
 RUN docker-php-ext-install opcache
 
 # Install PHP zip extension
-RUN apt-get install libzip-dev \
+RUN apt-get install -y libzip-dev \
 	&& docker-php-ext-configure zip --with-libzip \
 	&& docker-php-ext-install zip
 
